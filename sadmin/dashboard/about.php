@@ -1,5 +1,5 @@
 <?php include "inc/header.php";
-include "config/dbconn.php";
+// include "config/dbconn.php";
 ?>
 
 <!-- Page Heading -->
@@ -23,130 +23,148 @@ include "config/dbconn.php";
 <!-- Accordion -->
 <div class="card shadow mb-4">
     <!-- Card Header - Accordion -->
-    <a href="#mission" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="mission">
-        <h6 class="m-0 font-weight-bold text-primary">Mission</h6>
+    <a href="#contactInfo" class="d-block card-header py-3" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="contactInfo">
+        <h6 class="m-0 font-weight-bold text-primary">Company Information</h6>
     </a>
     <!-- Card Content - Collapse -->
-    <div class="collapse" id="mission">
-        <div class="card-body">
-            <div id="mission">
+    <!-- <div class="collapse" id="contactInfo"> -->
+    <div class="card-body">
+        <form id="contactForm">
+            <input type="hidden" name="companyId" class="companyId">
+            <input type="hidden" name="contactAction" id="contactAction">
+            <div class="form-row mb-2">
+                <div class="col">
+                    <label for="compName" class="form-label">Company Name</label>
+                    <input type="text" class="form-control" name="companyName" id="companyName">
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="card shadow mb-4">
-    <!-- Card Header - Accordion -->
-    <a href="#vision" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="vision">
-        <h6 class="m-0 font-weight-bold text-primary">Vision</h6>
-    </a>
-    <!-- Card Content - Collapse -->
-    <div class="collapse" id="vision">
-        <div class="card-body">
-            <div id="vision">
+            <div class="form-row mb-2">
+                <div class="col-4">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" name="email" id="email">
+                </div>
+                <div class="col-4 mb-2">
+                    <label for="phoneNo" class="form-label">Phone No.</label>
+                    <input type="text" class="form-control" name="phoneNo" id="phoneNo">
+                </div>
+                <div class="col-4 mb-2">
+                    <label for="altPhoneNo" class="form-label">Alt. Phone No.</label>
+                    <input type="text" class="form-control" name="altPhoneNo" id="altPhoneNo">
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="card shadow mb-4">
-    <!-- Card Header - Accordion -->
-    <a href="#values" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="values">
-        <h6 class="m-0 font-weight-bold text-primary">Values</h6>
-    </a>
-    <!-- Card Content - Collapse -->
-    <div class="collapse" id="values">
-        <div class="card-body">
-            <div id="values">
+            <div class="form-row mb-2">
+                <div class="col-6 mb-2">
+                    <label for="address" class="form-label">Address Line 1</label>
+                    <input type="text" class="form-control" name="address" id="address">
+                </div>
+                <div class="col-6 mb-2">
+                    <label for="address2" class="form-label">Address Line 2</label>
+                    <input type="text" class="form-control" name="address2" id="address2">
+                </div>
             </div>
-        </div>
-    </div>
-</div>
-<div class="card shadow mb-4">
-    <!-- Card Header - Accordion -->
-    <a href="#contactInfo" class="d-block card-header py-3 collapsed" data-toggle="collapse" role="button" aria-expanded="false" aria-controls="contactInfo">
-        <h6 class="m-0 font-weight-bold text-primary">Contact Information</h6>
-    </a>
-    <!-- Card Content - Collapse -->
-    <div class="collapse" id="contactInfo">
-        <div class="card-body">
-            <input type="hidden" name="companyId" id="companyId">
-            <input type="hidden" name="action" id="action" value="postData">
-            <div class="col-md-12 mb-2">
-                <label for="compName" class="form-label">Company Name</label>
-                <input type="text" class="form-control" name="companyName" id="companyName">
+            <div class="form-row mb-2">
+                <div class="col-4 mb-2">
+                    <label for="physicalAddress" class="form-label">Physical Address</label>
+                    <input type="text" class="form-control" name="physicalAddress" id="physicalAddress">
+                </div>
+                <div class="col-md-4 mb-2">
+                    <label for="city" class="form-label">City</label>
+                    <input type="text" class="form-control" name="city" id="city">
+                </div>
+                <div class="col-md-4 mb-3">
+                    <label for="postalCode" class="form-label">Postal Code</label>
+                    <input type="text" class="form-control" name="postalCode" id="postalCode">
+                </div>
             </div>
-            <div class="col-md-6 mb-2">
-                <label for="email" class="form-label">Email</label>
-                <input type="email" class="form-control" name="email" id="email">
+            <div class="form-row mb-2">
+                <div class="col-6 mb-3">
+                    <label for="lat" class="form-label">Latitude</label>
+                    <input type="text" class="form-control" name="lat" id="lat">
+                </div>
+                <div class="col-6 mb-3">
+                    <label for="lon" class="form-label">Longitude</label>
+                    <input type="text" class="form-control" name="lon" id="lon">
+                </div>
             </div>
-            <div class="col-md-6 mb-2">
-                <label for="phoneNo" class="form-label">Phone No.</label>
-                <input type="text" class="form-control" name="phoneNo" id="phoneNo">
+            <div class="form-row mb-2">
+                <div class="col">
+                    <label for="facebook" class="form-label">Facebook</label>
+                    <input type="text" class="form-control" name="facebook" id="facebook">
+                </div>
             </div>
-            <div class="col-12 mb-2">
-                <label for="address" class="form-label">Address Line 1</label>
-                <input type="text" class="form-control" name="address" id="address">
+            <div class="form-row mb-2">
+                <div class="col">
+                    <label for="twitter" class="form-label">Twitter</label>
+                    <input type="text" class="form-control" name="twitter" id="twitter">
+                </div>
             </div>
-            <div class="col-12 mb-2">
-                <label for="address2" class="form-label">Address Line 2</label>
-                <input type="text" class="form-control" name="address2" id="address2">
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="linkedIn" class="form-label">LinkedIn</label>
+                    <input type="text" class="form-control" name="linkedIn" id="linkedIn">
+                </div>
             </div>
-            <div class="col-4 mb-2">
-                <label for="physicalAddress" class="form-label">Physical Address</label>
-                <input type="text" class="form-control" name="physicalAddress" id="physicalAddress">
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="mission">Mission</label>
+                    <textarea class="form-control" name="mission" id="mission"></textarea>
+                </div>
             </div>
-            <div class="col-md-4 mb-2">
-                <label for="city" class="form-label">City</label>
-                <input type="text" class="form-control" name="city" id="city">
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="vision">Vision</label>
+                    <textarea class="form-control" name="vision" id="vision" rows="3"></textarea>
+                </div>
             </div>
-            <div class="col-md-4 mb-3">
-                <label for="postalCode" class="form-label">Postal Code</label>
-                <input type="text" class="form-control" name="postalCode" id="postalCode">
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="values">Values</label>
+                    <textarea class="form-control" name="values" id="values" rows="3"></textarea>
+                </div>
             </div>
-            <div class="col-md-4 mb-3">
-                <label for="lat" class="form-label">Latitude</label>
-                <input type="number" class="form-control" name="lat" id="lat">
-            </div>  
-            <div class="col-md-4 mb-3">
-                <label for="lon" class="form-label">Longitude</label>
-                <input type="number" class="form-control" name="lon" id="lon">
-            </div>          
-        </div>
-    </div>
-</div>
-
-<!-- Content Row -->
-<div class="row">
-    <div class="container" disabled>
-        <form class="row g-3" id="aboutForm">
-            <!-- action="scripts/about_script.php" method="post"> -->
-            <div class="col-12 mb-3">
-                <textarea class="form-control" name="aboutInfo" id="aboutInfo" rows="3"></textarea>
+            <div class="form-row mb-3">
+                <div class="col">
+                    <label for="aboutInfo">About Us</label>
+                    <textarea class="form-control" name="aboutInfo" id="aboutInfo" rows="3"></textarea>
+                </div>
             </div>
-            <div class="col-12">
-                <button type="submit" class="btn btn-primary btn-sm" id="btnSaveUpdate"><i class="fa fa-save"></i> Save</button>
-            </div>
+            <button type="submit" class="btn btn-primary btn-sm" id="btnSaveUpdate"><i class="fa fa-save"></i> Save</button>
         </form>
     </div>
+    <!-- </div> -->
 </div>
+
 
 <?php include "inc/footer.php"; ?>
 <script type="text/javascript">
     CKEDITOR.replace('aboutInfo');
+    CKEDITOR.replace('mission');
+    CKEDITOR.replace('vision');
+    CKEDITOR.replace('values');
 
     $(document).ready(function() {
         $('.alert').hide();
         loadContent();
     });
 
-    $('#aboutForm').on('submit', function(e) {
+    $('#contactForm').on('submit', function(e) {
         e.preventDefault();
-        var dataData = new FormData(this);
-        dataData.append('aboutInfo', CKEDITOR.instances['aboutInfo'].getData());
+        var formData = new FormData(this);
+        formData.append('aboutInfo', CKEDITOR.instances['aboutInfo'].getData());
+        formData.append('mission', CKEDITOR.instances['mission'].getData());
+        formData.append('vision', CKEDITOR.instances['vision'].getData());
+        formData.append('values', CKEDITOR.instances['values'].getData());
+
+        // Display the key/value pairs
+        // for (var pair of formData.entries()) {
+        //     console.log(pair[0] + ', ' + pair[1]);
+        // }
+
         $.ajax({
             url: "scripts/about_script.php",
             type: "POST",
             dataType: "JSON",
-            data: dataData,
+            data: formData,
             contentType: false,
             cache: false,
             processData: false,
@@ -154,19 +172,16 @@ include "config/dbconn.php";
                 var message = data['response']['message'];
                 var cl = data['response']['cl'];
                 var icon = data['response']['fa'];
-
                 $('.alert').show();
                 $('.alert').addClass('alert-' + cl);
                 $('.icon').addClass(icon);
                 document.getElementById('message').innerHTML = message;
-
-                loadCompanyInfo();
+                loadContent();
             }
         });
     });
 
     function loadContent() {
-
         $.ajax({
             url: "scripts/about_script.php",
             type: "GET",
@@ -175,20 +190,21 @@ include "config/dbconn.php";
                 page: "about"
             },
             success: function(data) {
-                console.log(data);
                 if (data != null) {
+                    console.log(data.companyData[0]['social_media_links']);
                     CKEDITOR.instances['aboutInfo'].setData(data.companyData[0]['description']);
-                    let jsonData = JSON.parse(data.companyData[0]['principles']);
-                    console.log(jsonData);
+
                     // SET Mission, Vision, Values
-                    $('#mission').html(jsonData['mission']);
-                    $('#vision').html(jsonData['vision']);
-                    $('#values').html(jsonData['values']);
+                    CKEDITOR.instances['mission'].setData(data.companyData[0]['mission']);
+                    CKEDITOR.instances['vision'].setData(data.companyData[0]['vision']);
+                    CKEDITOR.instances['values'].setData(data.companyData[0]['core_values']);
+
                     // SET Contacts Values
-                    $('#companyId').val(data.companyData[0]['id']);
+                    $('.companyId').val(data.companyData[0]['id']);
                     $('#companyName').val(data.companyData[0]['companyName']);
                     $('#email').val(data.companyData[0]['email']);
                     $('#phoneNo').val(data.companyData[0]['phone']);
+                    $('#altPhoneNo').val(data.companyData[0]['altPhone']);
                     $('#address').val(data.companyData[0]['address']);
                     $('#address2').val(data.companyData[0]['address2']);
                     $('#physicalAddress').val(data.companyData[0]['physicalAddress']);
@@ -196,6 +212,11 @@ include "config/dbconn.php";
                     $('#postalCode').val(data.companyData[0]['postalCode']);
                     $('#lat').val(data.companyData[0]['latitude']);
                     $('#lon').val(data.companyData[0]['longitude']);
+                    let socialLinks = data.companyData[0]['social_media_links'] == "" ? "{\"empty\":\"\"}" : data.companyData[0]['social_media_links'];
+                    let jsonDataSocialMedia = JSON.parse(socialLinks);
+                    $('#facebook').val(jsonDataSocialMedia['facebook']);
+                    $('#twitter').val(jsonDataSocialMedia['twitter']);
+                    $('#linkedIn').val(jsonDataSocialMedia['linkedIn']);
 
                 }
             }

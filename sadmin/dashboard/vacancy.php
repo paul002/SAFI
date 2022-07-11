@@ -7,7 +7,7 @@ include "inc/header.php";
     <h1 class="h3 mb-0 text-gray-800"><i class="fas fa-fw fa-user">&nbsp;&nbsp;</i>Work with us</h1>
     <!-- <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="New Post"><i class="fas fa-plus fa-sm text-white-50"></i> New Post</a> -->
     <!-- Button trigger modal -->
-    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm new" data-toggle="modal" data-target="#addProject">
+    <button type="button" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm new" data-toggle="modal" data-target="#addVacancy">
         <i class="fas fa-plus fa-sm text-white-50"></i> Add New Vacancy
     </button>
 </div>
@@ -23,15 +23,15 @@ include "inc/header.php";
         <span aria-hidden="true">&times;</span>
     </button>
 </div>
-<table id="projects_tbl" class="display hover" style="width:100%">
+<table id="vacancy_tbl" class="display hover" style="width:100%">
     <thead>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Position</th>
             <th>Category</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Sponsor</th>
+            <th>Closing Date</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Description</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -40,12 +40,12 @@ include "inc/header.php";
     </tbody>
     <tfoot>
         <tr>
-            <th>Name</th>
-            <th>Description</th>
+            <th>Position</th>
             <th>Category</th>
-            <th>Start Date</th>
-            <th>End Date</th>
-            <th>Sponsor</th>
+            <th>Closing Date</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Description</th>
             <th>Actions</th>
         </tr>
     </tfoot>
@@ -53,17 +53,17 @@ include "inc/header.php";
 <?php include "inc/footer.php"; ?>
 
 <!-- POSTS MODAL -->
-<div class="modal fade" id="addProject" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="projectDialogLabel" aria-hidden="true">
+<div class="modal fade" id="addVacancy" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="vacancyDialogLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header header-bg">
                 <i class="fas fa-fw fa-file fa-lg" style="padding-top: 8px">&nbsp;&nbsp;</i>
-                <h5 class="modal-title" id="projectDialogLabel">New Project</h5>
+                <h5 class="modal-title" id="vacancyDialogLabel">New Vacancy</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="project_form" enctype="multipart/form-data">
+            <form id="vacancy_form" action="scripts/add_vacancy.php" method="post">
                 <div class="modal-body">
                     <div class="form-row mb-4">
                         <span style="font-size:.7em; font-style:italic">[Fields marked with <span class="text-danger">*</span> are mandatory]</span>
@@ -72,41 +72,27 @@ include "inc/header.php";
                     <input type="hidden" id="id" name="id" value="0">
                     <div class="form-row">
                         <div class="col-6">
-                            <label>Project Name <span class="text-danger">*</span></label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="Project Name">
+                            <label>Position <span class="text-danger">*</span></label>
+                            <input type="text" name="position" id="position" class="form-control" placeholder="Position">
                         </div>
-                    </div>
-                    <div class="form-row">
-                        <div class="col-6">                            
-                            <label>Start Date <span class="text-danger">*</span></label>
-                            <input type="text" name="start_date" id="start_date" class="form-control" data-provide="datepicker" />
-                        </div>
-                        <div class="col-6">
-                            <label>End Date <span class="text-danger">*</span></label>
-                            <input type="text" name="end_date" id="end_date" class="form-control" data-provide="datepicker"/>
-                        </div>
-                    </div>
-                    <div class="form-row mb-2">
                         <div class="col-6">
                             <label>Category <span class="text-danger">*</span></label>
-                            <select  name="category" id="category" class="form-control"></select>
-                        </div>
-                        <div class="col-6">
-                            <label>Sponsor <span class="text-danger">*</span></label>
-                            <input type="text" name="sponsor" id="sponsor" class="form-control" placeholder="Sponsor">
+                            <select name="category" id="category" class="form-control"></select>
                         </div>
                     </div>
                     <div class="form-row mb-2">
-                        <div class="col-8">
-                            <label>Featured</label>
-                            <input type="file" name="featuredImage" id="featuredImage" class="form-control">
+                        <div class="col-6">
+                            <label>Closing Date <span class="text-danger">*</span></label>
+                            <input type="text" name="closing_date" id="closing_date" class="form-control" />
                         </div>
-                        <div class="col-4">
-                            <label>Preview</label>
-                            <div class="text-center" style="width:150; height:80; border: 1px solid #c0c0c0; border-radius: 4px">
-                                <img src="img/placeholder-image-icon-21.jpg" id="featuredImagePreview" alt="featuredImage" width="244" height="100">
-                            </div>
+                        <div class="col-6">
+                            <label>Location <span class="text-danger">*</span></label>
+                            <input type="text" name="location" id="location" class="form-control" placeholder="Location">
                         </div>
+                    </div>
+                    <div class="form-row mb-2">
+                        <label style="margin-top: 10px;">Closed&nbsp;&nbsp;</label>
+                        <input type="checkbox" name="status" id="status" />
                     </div>
                     <div class="form-row mb-2">
                         <div class="col-12">
@@ -155,31 +141,31 @@ include "inc/header.php";
     CKEDITOR.replace('description');
 </script>
 <script type="text/javascript">
-    let load_projects = $('#projects_tbl').DataTable({
+    let load_vacancy = $('#vacancy_tbl').DataTable({
         "searching": true,
         "processing": false,
         "serverMethod": "post",
         "dataSrc": "data",
         "ajax": {
-            url: "scripts/load_projects.php"
+            url: "scripts/load_vacancies.php"
         },
         "columns": [{
-                data: 'name'
-            },
-            {
-                data: 'description'
+                data: 'position'
             },
             {
                 data: 'category'
             },
             {
-                data: 'start_date'
+                data: 'closing_date'
             },
             {
-                data: 'end_date'
+                data: 'status'
             },
             {
-                data: 'sponsor'
+                data: 'location'
+            },
+            {
+                data: 'description'
             },
             {
                 data: 'action'
@@ -188,11 +174,15 @@ include "inc/header.php";
     });
     $(document).ready(function() {
         $('.alert').hide();
-        loadCategories(0, "-- Select Project Category --")
+        loadCategories(0, "-- Select Project Category --");
+        $('#closing_date').datetimepicker({
+            format: 'yyyy-mm-dd'
+        });
     });
+
     function loadCategories(id, value) {
         $.ajax({
-            url: "scripts/load_project_categories.php",
+            url: "scripts/load_vacancy_categories.php",
             type: "GET",
             dataType: "json",
             data: {
@@ -207,27 +197,15 @@ include "inc/header.php";
             }
         });
     }
-    $('#featuredImage').on('change', function() {
-        const files = this.files;
-        if (!files || files.length == 0)
-            return;
-        const file = files[0];
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-            $('#featuredImagePreview').attr('src', reader.result);
-        };
-
-    })
 
     // Submit data
-    $('#project_form').on('submit', function(e) {
+    $('#vacancy_form').on('submit', function(e) {
         e.preventDefault();
         let formData = new FormData(this);
         formData.append('description', CKEDITOR.instances['description'].getData());
         $.ajax({
             type: "POST",
-            url: "scripts/add_project.php",
+            url: "scripts/add_vacancy.php",
             data: formData,
             dataType: "json",
             contentType: false,
@@ -235,7 +213,7 @@ include "inc/header.php";
             processData: false,
             success: function(data) {
                 if (data != null) {
-                    $('#addProject').modal('hide');
+                    $('#addVacancy').modal('hide');
                     var message = data['response']['message'];
                     var cl = data['response']['cl'];
                     var icon = data['response']['fa'];
@@ -243,43 +221,46 @@ include "inc/header.php";
                     $('.alert').addClass('alert-' + cl);
                     $('.icon').addClass(icon);
                     $('#message').html(message);
-                    $('#project_form')[0].reset();
-                    $('#featuredImagePreview').attr('src', 'img/placeholder-image-icon-21.jpg');
+                    $('#vacancy_form')[0].reset();
                     CKEDITOR.instances['description'].setData('');
-                    load_projects.ajax.reload();
+                    load_vacancy.ajax.reload();
                 }
             }
         })
     })
 
     // Load Edit Data
-    $('#projects_tbl').on('click', '.edit', function() {
+    $('#vacancy_tbl').on('click', '.edit', function() {
         var id = $(this).data('id');
         $.ajax({
-            url: "scripts/load_projects.php",
+            url: "scripts/load_vacancies.php",
             type: "GET",
             dataType: "json",
             data: {
                 id: id
             },
             success: function(data) {
-                $('#id').val(data[0]['project_id']);
-                $('#name').val(data[0]['name']);
-                $('#start_date').val(data[0]['start_date']);
-                $('#end_date').val(data[0]['end_date']);
+                $('#id').val(data[0]['vacancy_id']);
+                $('#position').val(data[0]['position']);
+                $('#closing_date').val(data[0]['closing_date']);
+                $('#location').val(data[0]['location']);
+                let status = data[0]['status'];
+                if(status == 1){
+                    $('#status').prop('checked', true);
+                }else{
+                    $('#status').prop('checked', false);
+                }
                 loadCategories(data[0]['category_id'], data[0]['category']);
-                $('#sponsor').val(data[0]['sponsor']);
-                $('#featuredImagePreview').attr('src', '../../assets/images/projects/' + data[0]['featImg']);
                 CKEDITOR.instances['description'].setData(data[0]['description']);
                 document.getElementById('save').innerHTML = '<i class="fas fa-fw fa-save">&nbsp;</i>Update';
-                document.getElementById('projectDialogLabel').innerHTML = "Edit Project";
-                $('#addProject').modal('show');
+                document.getElementById('vacancyDialogLabel').innerHTML = "Edit Vacancy";
+                $('#addVacancy').modal('show');
             }
         });
     });
 
     // GET Project ID TO DELETE MODAL
-    $('#projects_tbl').on('click', '.del', function() {
+    $('#vacancy_tbl').on('click', '.del', function() {
         var id = $(this).data('id');
         $('#postDeleteModal').modal('show');
         $('#delPost').val(id);
@@ -291,9 +272,9 @@ include "inc/header.php";
         $.ajax({
             type: "GET",
             dataType: "JSON",
-            url: "scripts/add_project.php",
+            url: "scripts/add_vacancy.php",
             data: {
-                projectId: id
+                vacancyId: id
             },
             success: function(data) {
                 var message = data['response']['message'];
@@ -304,7 +285,7 @@ include "inc/header.php";
                 $('.icon').addClass(icon);
                 document.getElementById('message').innerHTML = message;
                 $('#postDeleteModal').modal('hide');
-                load_projects.ajax.reload();
+                load_vacancy.ajax.reload();
             }
         });
     });

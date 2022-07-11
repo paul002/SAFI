@@ -19,16 +19,15 @@
                                            <ul class="address">
                                                <li>
                                                    <i class="fa fa-home" aria-hidden="true"></i>
-                                                   <span>Area 47, Sector 4, Lilongwe, Malawi</span>
+                                                   <span><?= $aboutObject->physicalAddress; ?></span>
                                                </li>
                                                <li>
                                                    <i class="fa fa-phone" aria-hidden="true"></i>
-                                                   <span>+8801 923 970 698.</span>
+                                                   <span><?= $aboutObject->phone; ?></span>
                                                </li>
                                                <li>
                                                    <i class="fa fa-envelope-o" aria-hidden="true"></i>
-                                                   <span>info@safimw.org</span>
-
+                                                   <span><?= $aboutObject->email; ?></span>
                                                </li>
                                                <li>
                                                    <i class="fa fa-globe" aria-hidden="true"></i>
@@ -162,8 +161,8 @@
                            <!-- .copyright-txt -->
                            <div class="social-box">
                                <ul class="social-icon-rounded">
-                                   <li><a href="https://www.facebook.com/safimalawi.org/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                                   <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                                   <li><a href=<?=$socialLinks->facebook;?> target="_bank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                                   <li><a href=<?=$socialLinks->twitter;?> target="_bank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                                </ul>
                            </div>
                            <!-- .social-box -->

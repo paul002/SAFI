@@ -1,5 +1,5 @@
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/safimw.org/includes/header.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/safi/includes/header.php";
 ?>
 
 <!-- Start Page Header Section -->
@@ -69,28 +69,28 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/safimw.org/includes/header.php";
                             <li>
                                 <i class="flaticon-placeholder"></i>
                                 <div class="contact-content">
-                                    <p>Home#007, Road#07 New Elephant Road Dhaka, Bangladesh</p>
+                                    <p><?=$aboutObject->physicalAddress;?></p>
                                 </div>
                             </li>
                             <li>
                                 <i class="flaticon-vibrating-phone"></i>
                                 <div class="contact-content">
-                                    <p>88013 659 214 512,</p>
-                                    <p>66021489 01923 255 100 326</p>
+                                    <p><?=$aboutObject->phone;?>,</p>
+                                    <p><?=$aboutObject->altPhone;?></p>
                                 </div>
                             </li>
                             <li>
                                 <i class="flaticon-message"></i>
                                 <div class="contact-content">
-                                    <p>Support@yourmail.com</p>
-                                    <p>http://admin@.com</p>
+                                    <p><?=$aboutObject->email;?></p>
                                 </div>
                             </li>
                         </ul>
                         <!-- .contact-address -->
+
                         <ul class="social-icon-rounded contact-social-icon">
-                            <li><a href="https://www.facebook.com/safimalawi.org/"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                            <li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                            <li><a href=<?=$socialLinks->facebook;?> target="_bank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+                            <li><a href=<?=$socialLinks->twitter;?> target="_bank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -110,5 +110,5 @@ require_once $_SERVER['DOCUMENT_ROOT'] . "/safimw.org/includes/header.php";
 <!-- End Maps Section -->
 
 <?php
-require_once $_SERVER['DOCUMENT_ROOT'] . "/safimw.org/includes/footer.php";
+require_once $_SERVER['DOCUMENT_ROOT'] . "/safi/includes/footer.php";
 ?>

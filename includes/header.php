@@ -1,6 +1,14 @@
 <?php
 require_once "config/dbconn.php";
-$db = new db_conn(); ?>
+$db = new db_conn(); 
+
+$aboutQuery = "SELECT * FROM `about` LIMIT 1";
+$aboutObject = $db->fetchObject($aboutQuery);
+$socialLinks = json_decode($aboutObject->social_links);
+
+
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -124,8 +132,8 @@ $db = new db_conn(); ?>
                         <div class="header-top">
                             <ul class="h-contact">
                                 <li><i class="flaticon-time-left"></i> Time : Mon-Thur : 08:00am-16:30pm, Fri: 08:30-12:00</li>
-                                <li><i class="flaticon-vibrating-phone"></i> Phone : +88017 923 970 659</li>
-                                <li><i class="flaticon-placeholder"></i> Address : Area 47, Sector 4, Lilongwe</li>
+                                <li><i class="flaticon-vibrating-phone"></i> Phone : <?=$aboutObject->phone;?></li>
+                                <li><i class="flaticon-placeholder"></i> Address : <?=$aboutObject->physicalAddress;?></li>
                             </ul>
                             <div class="donate-option">
                                 <a href="donate.php"><i class="fa fa-heart" aria-hidden="true"></i> donate now</a>

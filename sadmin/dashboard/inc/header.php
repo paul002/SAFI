@@ -5,6 +5,12 @@ if (!isset($_SESSION['userId'])) {
 }
 $userId = $_SESSION['userId'];
 $username = $_SESSION['username'];
+
+require_once '../../config/dbconn.php';
+$db = new db_conn();
+
+$catQuery = "SELECT * FROM `uploads_category`";
+$uploadsCatArray = $db->fetchQuery($catQuery);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -18,6 +24,10 @@ $username = $_SESSION['username'];
 
   <title>SAFI - Dashboard</title>
 
+  <!-- <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"> -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
   <!-- Custom fonts for this template-->
   <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
   <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
@@ -29,10 +39,10 @@ $username = $_SESSION['username'];
   <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.2/css/jquery.dataTables.css">
 
   <!-- jQuery -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <link href="vendor/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
   <script src="vendor/bootstrap-datepicker/locales/bootstrap-datepicker-en-CA.min.js"></script>
-  <script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+  <script src="vendor/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script> -->
 
   <script type="text/javascript" src="vendor/ckeditor/ckeditor.js"></script>
 
@@ -154,7 +164,7 @@ $username = $_SESSION['username'];
             <a class="collapse-item" href="vacancy_categories.php">Vacancy Categories</a>
           </div>
         </div>
-      </li>      
+      </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
 
@@ -172,7 +182,32 @@ $username = $_SESSION['username'];
       </li>
       <!-- Divider -->
       <hr class="sidebar-divider d-none d-md-block">
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseImageUploads" aria-expanded="true" aria-controls="collapseImageUploads">
+          <i class="fas fa-fw fa-upload"></i>
+          <span>Uploads</span>
+        </a>
+        <div id="collapseImageUploads" class="collapse" aria-labelledby="headingUtilities" data-parent="#accordionSidebar">
+          <div class="bg-white py-2 collapse-inner rounded">
+            <?php
+            foreach ($uploadsCatArray as $row) {
+              extract($row);
 
+            ?>
+              <h6 class="collapse-header"><?= $category; ?></h6>
+              <a class="collapse-item" href="uploads.php?id=<?= $id; ?>">View List</a>
+              <!-- <h6 class="collapse-header">Gallery</h6>
+              <a class="collapse-item" href="uploads.php.php">View List</a>
+              <h6 class="collapse-header">Documents</h6>
+              <a class="collapse-item" href="uploads.php.php">View List</a> -->
+            <?php
+
+            }
+            ?>
+          </div>
+        </div>
+      </li>
+      <hr class="sidebar-divider d-none d-md-block">
       <!-- Nav Item - Manage Users -->
       <li class="nav-item">
         <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUsers" aria-expanded="true" aria-controls="collapseUsers">

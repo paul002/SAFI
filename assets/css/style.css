@@ -2271,8 +2271,7 @@ section{
 	display: block;
 }
 .blog-content-box{
-	border: 1px solid #f0f0f0;
-	border-top: 0;
+	border:none;
 }
 .blog-content{
 	padding: 31px 20px 25px 18px;

@@ -1,5 +1,5 @@
 <?php include "inc/header.php"; 
-  include "config/dbconn.php";
+  // include "config/dbconn.php";
 
   $db= new db_conn();
   // Posts
